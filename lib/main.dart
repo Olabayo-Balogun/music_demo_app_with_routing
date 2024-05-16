@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'playlist_screen.dart';
+import 'liked_songs.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PlaylistScreen(),
+      home: DefaultTabController(
+        length: 2, // Number of tabs
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Music Playlist'),
+            bottom: TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.music_note), text: 'Songs'),
+                Tab(icon: Icon(Icons.favorite), text: 'Liked'),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              PlaylistScreen(),
+              LikedSongs(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
